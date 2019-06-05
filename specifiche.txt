@@ -1,0 +1,24 @@
+Il protagonista è un serpente
+
+Dal menu si può scegliere se l'avversario è una freccia o un cetriolo.
+Si può scegliere il protagonista: o il re o il serpente
+si può scegliere la velocità delle frecce
+
+Il personaggio sta fermo e deve saltare le frecce
+
+Deve essere mostrato il tempo che si resiste
+
+Deve essere mostrato il punteggio: si contano le frecce
+
+il cetriolo fa peredere una vita
+la freccia ne fa perdere mezza
+
+in totale si hanno cinque vite
+
+il punteggio deve essere salvato
+
+le pozioni nella fialetta danno una vita
+
+se si prende il diamante si vince la partita
+
+le freccie possono arrivare di tanti colori diversi
