@@ -1,0 +1,43 @@
+{
+  "icons": [
+    {
+      "src": "assets/icons/icon_512x512.994cf424102387465bf445ebe6093e82.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/icon_384x384.a4a5fa8ba339b17608a40c3b6ca1ad63.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/icon_256x256.c0d62b5e946cc3680d28fbf997032dd5.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/icon_192x192.3e3af65137daca4f231f50a66a832778.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/icon_128x128.c499aa46de672b19bcce477fd5eb7b31.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/icon_96x96.f91b53cd6b9f17d9087b617cb8f04c73.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    }
+  ],
+  "name": "Salta Salta Freccia",
+  "short_name": "SSF",
+  "orientation": "landscape",
+  "display": "fullscreen",
+  "start_url": "/saltasaltafreccia",
+  "description": "Description!",
+  "background_color": "#01579b",
+  "theme_color": "#01579b",
+  "theme-color": "#01579b"
+}
