@@ -35,9 +35,10 @@
   "short_name": "SSF",
   "orientation": "landscape",
   "display": "fullscreen",
-  "start_url": "/",
+  "start_url": "/saltasaltafreccia",
   "description": "Description!",
   "background_color": "#01579b",
   "theme_color": "#01579b",
-  "theme-color": "#01579b"
+  "theme-color": "#01579b",
+  "prefer_related_applications": false
 }
