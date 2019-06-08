@@ -82,7 +82,6 @@ class Arrow extends Phaser.GameObjects.Sprite {
 
     this.setTexture('items', 0);
     this.setPosition(x, y);
-    this.rotation = Math.random();
   }
 
   preUpdate(time, delta) {

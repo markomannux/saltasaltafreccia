@@ -51,6 +51,7 @@ module.exports = {
       'start_url': '/saltasaltafreccia',
       'display': 'fullscreen',
       'orientation': 'landscape',
+      'prefer_related_applications': false,
       'icons': [
         {
           src: path.resolve('src/assets/images/icon.png'),
