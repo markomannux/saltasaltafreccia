@@ -3,10 +3,24 @@
   <head>
     <meta charset="utf-8"/>
     <title>Salta salta freccia</title>
-  </head>
+  <meta name="theme-color" content="#01579b" /><link rel="manifest" href="manifest.6a718f86454d7f4eb74be370da3ee338.json" /></head>
   <body>
       <div id="main-container">
         <div id="game-container"></div>
       </div>
   <script type="text/javascript" src="main.js"></script></body>
+  <script>
+  if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js').then(function(registration) {
+          // Registration was successful
+          console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }, function(err) {
+          // registration failed :(
+          console.log('ServiceWorker registration failed: ', err);
+        });
+      });
+    }
+  </script>
+
 </html>
