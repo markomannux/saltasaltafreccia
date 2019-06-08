@@ -48,7 +48,7 @@ module.exports = {
       'background_color': '#01579b',
       'theme_color': '#01579b',
       'theme-color': '#01579b',
-      'start_url': '/saltasaltafreccia',
+      'start_url': '/saltasaltafreccia/',
       'display': 'fullscreen',
       'orientation': 'landscape',
       'prefer_related_applications': false,
