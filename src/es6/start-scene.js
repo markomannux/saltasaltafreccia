@@ -1,7 +1,5 @@
 import Phaser from 'phaser';
-
 import Player from './player.js';
-
 import PlayerSpritesheet from '../assets/spritesheets/buch-characters-64px-extruded.png';
 import ItemsSpritesheet from '../assets/spritesheets/items.png';
 
@@ -35,7 +33,6 @@ export default class StartScene extends Phaser.Scene {
   }
 
   create() {
-  
     const arrow1 = new Arrow(this, 100, 270);
     arrow1.setScale(3);
     const arrow2 = new Arrow(this, 500, 270);
