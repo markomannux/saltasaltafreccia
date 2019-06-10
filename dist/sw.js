@@ -2,6 +2,7 @@ var serviceWorkerOption = {
   "assets": [
     "/88a77472df7cefb943edf57936e85c01.png",
     "/fce4c7e80852ca0ead81b531e6fc3928.png",
+    "/ad48e6cf3bea06bf9a730ef89cd126ef.png",
     "/main.js",
     "/index.html"
   ]
