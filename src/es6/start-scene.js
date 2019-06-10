@@ -71,9 +71,15 @@ export default class StartScene extends Phaser.Scene {
 
     });
 
-    this.input.once('pointerdown', function(event) {
-      this.scene.start('game_scene');
-    }, this);
+    var tapZone = this.add.zone(0, 0, 600, 400).setOrigin(0).setName('Tap').setInteractive();
+
+    const self = this;
+
+    this.input.on('gameobjectdown', function(pointer, gameObject) {
+      if(gameObject.name === 'Tap') {
+        self.scene.start('game_scene');
+      }
+    })
   }
 
   update() {

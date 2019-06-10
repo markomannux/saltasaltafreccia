@@ -42,6 +42,19 @@ export default class GameScene extends Phaser.Scene {
         this.player.playJump();
       }
     }, this);
+
+    var tapZone = this.add.zone(0, 0, 600, 400).setOrigin(0).setName('Tap').setInteractive();
+
+    const self = this;
+
+    this.input.on('gameobjectdown', function(pointer, gameObject) {
+      if(gameObject.name === 'Tap') {
+        if (self.player.body.touching.down) {
+          self.player.body.setVelocityY(-490);
+          self.player.playJump();
+        }
+      }
+    })
   }
 
   collideWithArrow() {
