@@ -5,7 +5,7 @@ import ItemsSpritesheet from '../assets/spritesheets/items.png';
 
 export default class StartScene extends Phaser.Scene {
   constructor() {
-    super();
+    super({key: 'start_scene'});
   }
 
   preload() {
@@ -42,6 +42,7 @@ export default class StartScene extends Phaser.Scene {
 
     this.player = new Player(this, 300, 200);
     this.player.setScale(4);
+    this.player.playWalk();
 
     this.text = this.add
         .text(300, 90, 'Salta Salta Freccia', {
@@ -69,6 +70,10 @@ export default class StartScene extends Phaser.Scene {
       ],
 
     });
+
+    this.input.once('pointerdown', function(event) {
+      this.scene.start('game_scene');
+    }, this);
   }
 
   update() {
