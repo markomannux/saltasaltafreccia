@@ -13,6 +13,7 @@ module.exports = {
         "sourceType": "module"
     },
     "rules": {
+        "require-jsdoc": "off",
         "linebreak-style": "off"
     }
 };

@@ -6,6 +6,15 @@ const path = require('path');
 module.exports = {
   entry: './src/index.js',
   devServer: {
+    openPage: 'saltasaltafreccia',
+    proxy: {
+      '/saltasaltafreccia': {
+        target: 'http://localhost:8080',
+        pathRewrite: {
+          '^/saltasaltafreccia': '',
+        },
+      },
+    },
     contentBase: './dist',
   },
   output: {

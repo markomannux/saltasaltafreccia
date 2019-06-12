@@ -6,50 +6,36 @@ import ItemsSpritesheet from '../assets/spritesheets/items.png';
 export default class StartScene extends Phaser.Scene {
   constructor() {
     super({key: 'start_scene'});
+    this.playerTypes = ['snake', 'king'];
+    this.playerTypeIdx = 0;
+    this.playerType = this.playerTypes[this.playerTypeIdx];
   }
 
   preload() {
-    this.load.spritesheet(
-        'player-spritesheet',
-        PlayerSpritesheet,
-        {
-          frameWidth: 64,
-          frameHeight: 64,
-          margin: 1,
-          spacing: 2,
-        }
-    );
-
-    this.load.spritesheet(
-        'items',
-        ItemsSpritesheet,
-        {
-          frameWidth: 32,
-          frameHeight: 32,
-          margin: 0,
-          spacing: 0,
-        }
-    );
   }
 
   create() {
-    const arrow1 = new Arrow(this, 100, 270);
+    const arrow1 = new Arrow(this, 100, 240);
     arrow1.setScale(3);
-    const arrow2 = new Arrow(this, 500, 270);
+    const arrow2 = new Arrow(this, 500, 240);
     arrow2.setScale(3);
     this.add.existing(arrow1);
     this.add.existing(arrow2);
 
-    this.player = new Player(this, 300, 200);
+    this.player = new Player(this, 300, 170, this.playerType);
     this.player.setScale(4);
     this.player.playWalk();
+    this.player.setInteractive();
+
+    this.player.on('pointerdown', this.onPlayerTap, this);
 
     this.text = this.add
-        .text(300, 90, 'Salta Salta Freccia', {
-          font: '48px monospace',
+        .text(300, 60, 'Salta Salta la Freccia', {
+          font: '44px monospace',
           fill: '#d4963a',
         });
     this.text.setOrigin(0.5);
+
 
     this.tweens.timeline({
 
@@ -58,12 +44,12 @@ export default class StartScene extends Phaser.Scene {
 
       tweens: [
         {
-          y: 100,
+          y: 70,
           ease: 'Sine.easeOut',
           duration: 500,
         },
         {
-          y: 90,
+          y: 60,
           ease: 'Sine.easeOut',
           duration: 500,
         },
@@ -71,15 +57,27 @@ export default class StartScene extends Phaser.Scene {
 
     });
 
-    var tapZone = this.add.zone(0, 0, 600, 400).setOrigin(0).setName('Tap').setInteractive();
+    this.start = this.add
+        .text(300, 350, 'Start', {
+          font: '28px monospace',
+          fill: '#d4963a',
+        });
+    this.start.setOrigin(0.5);
 
-    const self = this;
+    this.start.setInteractive();
 
-    this.input.on('gameobjectdown', function(pointer, gameObject) {
-      if(gameObject.name === 'Tap') {
-        self.scene.start('game_scene');
-      }
-    })
+    this.start.on('pointerdown', this.onStartTap, this);
+
+  }
+
+  onPlayerTap() {
+    this.playerType = this.playerTypes[++this.playerTypeIdx%2];
+    this.player.setType(this.playerType);
+    this.player.playWalk();
+  }
+
+  onStartTap() {
+    this.scene.start('game_scene', {player: this.playerType});
   }
 
   update() {

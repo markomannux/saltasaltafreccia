@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import PreloadScene from './es6/preload-scene.js';
 import StartScene from './es6/start-scene.js';
 import GameScene from './es6/game-scene.js';
 import './assets/css/style.css';
@@ -10,7 +11,7 @@ const config = {
   backgroundColor: '#420b4c',
   parent: 'game-container',
   pixelArt: true,
-  scene: [StartScene, GameScene],
+  scene: [PreloadScene, StartScene, GameScene],
   physics: {
     default: 'arcade',
     arcade: {

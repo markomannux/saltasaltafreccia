@@ -11,11 +11,15 @@ export default class GameScene extends Phaser.Scene {
     this.EMITTING_INTERVAL = 1000;
   }
 
+  init(data) {
+    this.data = data;
+  }
+
   preload() {
-    this.load.image('ground', GroundImage);
   }
 
   create() {
+    const self = this;
     const TILE_SIZE = 72;
     this.lastEmit = 0;
 
@@ -27,38 +31,43 @@ export default class GameScene extends Phaser.Scene {
       this.platforms.create(TILE_SIZE/2 + TILE_SIZE*i, 375, 'ground');
     }
 
-    this.player = new Player(this, 120, 239);
+    this.player = new Player(this, 120, 239, this.data.player);
     this.player.setScale(2);
     this.physics.add.existing(this.player);
+    this.player.body.setSize(25, 30);
     this.player.body.offset.x = 22;
     this.player.body.offset.y = 33;
+
     this.physics.add.collider(this.player, this.platforms);
 
-    this.physics.add.overlap(this.player, this.arrowPool, this.collideWithArrow, null, this);
+    this.physics.add.overlap(this.player,
+        this.arrowPool,
+        this.collideWithArrow,
+        null,
+        this);
 
     this.input.on('pointerdown', function(event) {
-      if (this.player.body.touching.down) {
-        this.player.body.setVelocityY(-490);
-        this.player.playJump();
+      if (self.player.body.touching.down) {
+        self.player.body.setVelocityY(-490);
+        self.player.playJump();
       }
     }, this);
 
-    var tapZone = this.add.zone(0, 0, 600, 400).setOrigin(0).setName('Tap').setInteractive();
+    this.add.zone(0, 0, 600, 400).setOrigin(0).setName('Tap').setInteractive();
 
-    const self = this;
 
     this.input.on('gameobjectdown', function(pointer, gameObject) {
-      if(gameObject.name === 'Tap') {
+      if (gameObject.name === 'Tap') {
         if (self.player.body.touching.down) {
           self.player.body.setVelocityY(-490);
           self.player.playJump();
         }
       }
-    })
+    });
   }
 
   collideWithArrow() {
-      this.scene.start('start_scene');
+    this.scene.start('start_scene');
   }
 
   update(time, delta) {
