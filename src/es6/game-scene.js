@@ -3,12 +3,10 @@ import Phaser from 'phaser';
 import Player from './player.js';
 import Arrow from './arrow.js';
 
-import GroundImage from '../assets/spritesheets/ground.png';
-
 export default class GameScene extends Phaser.Scene {
   constructor() {
     super({key: 'game_scene'});
-    this.EMITTING_INTERVAL = 1000;
+    this.BASE_EMITTING_INTERVAL = 1000;
   }
 
   init(data) {
@@ -22,6 +20,7 @@ export default class GameScene extends Phaser.Scene {
     const self = this;
     const TILE_SIZE = 72;
     this.lastEmit = 0;
+    this.nextEmit = this.BASE_EMITTING_INTERVAL;
 
     this.platforms = this.physics.add.staticGroup();
     this.arrowPool = this.add.group();
@@ -71,8 +70,9 @@ export default class GameScene extends Phaser.Scene {
   }
 
   update(time, delta) {
-    if (time > 1000 && time - this.lastEmit > this.EMITTING_INTERVAL) {
-      const arrow = this.arrowPool.getFirstDead(true, 600, 300);
+    if (time > 1000 && time - this.lastEmit > this.BASE_EMITTING_INTERVAL) {
+      const vPos = 275 + Math.floor(Math.random()*50);
+      const arrow = this.arrowPool.getFirstDead(true, 600, vPos);
       this.physics.add.existing(arrow);
       arrow.body.allowGravity = false;
       arrow.body.setSize(30, 10);
@@ -80,6 +80,7 @@ export default class GameScene extends Phaser.Scene {
       arrow.angle = -45;
       arrow.setScale(2);
       this.lastEmit = time;
+      this.nextEmit = this.BASE_EMITTING_INTERVAL + Math.floor(Math.random()*500);
     }
   }
 }
