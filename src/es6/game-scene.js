@@ -45,40 +45,35 @@ export default class GameScene extends Phaser.Scene {
         null,
         this);
 
-    this.input.on('pointerdown', function(event) {
-      if (self.player.body.touching.down) {
-        self.player.body.setVelocityY(-490);
-        self.player.playJump();
-      }
-    }, this);
-
     this.add.zone(0, 0, 600, 400).setOrigin(0).setName('Tap').setInteractive();
-
-
-    this.input.on('gameobjectdown', function(pointer, gameObject) {
-      if (gameObject.name === 'Tap') {
-        if (self.player.body.touching.down) {
-          self.player.body.setVelocityY(-490);
-          self.player.playJump();
-        }
-      }
-    });
+    this.input.on('gameobjectdown', this.onTap, this);
   }
 
   collideWithArrow() {
     this.scene.start('start_scene');
   }
 
+  onTap(pointer, gameObject) {
+    if (gameObject.name === 'Tap') {
+      if (this.player.body.touching.down) {
+        this.player.body.setVelocityY(-490);
+        this.player.playJump();
+      }
+    }
+  }
+
   update(time, delta) {
     if (time > 1000 && time - this.lastEmit > this.BASE_EMITTING_INTERVAL) {
       const vPos = 275 + Math.floor(Math.random()*50);
       const arrow = this.arrowPool.getFirstDead(true, 600, vPos);
+      this.add.existing(arrow);
+      arrow.setScale(2);
+
       this.physics.add.existing(arrow);
       arrow.body.allowGravity = false;
       arrow.body.setSize(30, 10);
-      this.add.existing(arrow);
       arrow.angle = -45;
-      arrow.setScale(2);
+
       this.lastEmit = time;
       this.nextEmit = this.BASE_EMITTING_INTERVAL + Math.floor(Math.random()*500);
     }
