@@ -1,7 +1,5 @@
 import Phaser from 'phaser';
 import Player from './player.js';
-import PlayerSpritesheet from '../assets/spritesheets/buch-characters-64px-extruded.png';
-import ItemsSpritesheet from '../assets/spritesheets/items.png';
 
 export default class StartScene extends Phaser.Scene {
   constructor() {
@@ -67,7 +65,6 @@ export default class StartScene extends Phaser.Scene {
     this.start.setInteractive();
 
     this.start.on('pointerdown', this.onStartTap, this);
-
   }
 
   onPlayerTap() {

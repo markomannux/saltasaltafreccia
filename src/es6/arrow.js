@@ -5,9 +5,14 @@ export default class Arrow extends Phaser.GameObjects.Sprite {
   constructor(scene, x, y, item = 0) {
     super(scene, x, y);
     this.setItemType(item);
-
     this.setPosition(x, y);
+    scene.physics.add.existing(this);
+    this.body.allowGravity = false;
+    this.body.setSize(30, 10);
+    this.setScale(2);
+    this.angle = -45;
 
+    scene.add.existing(this);
   }
 
   setItemType(textureIdx) {
