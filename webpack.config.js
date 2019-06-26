@@ -6,7 +6,7 @@ const path = require('path');
 module.exports = {
   entry: './src/index.js',
   devServer: {
-    openPage: 'saltasaltafreccia',
+    openPage: 'saltasaltafreccia/',
     proxy: {
       '/saltasaltafreccia': {
         target: 'http://localhost:8080',
@@ -49,6 +49,7 @@ module.exports = {
     }),
     new ServiceWorkerWebpackPlugin({
       entry: path.join(__dirname, 'src/sw.js'),
+      publicPath: '/saltasaltafreccia/',
     }),
     new WebpackPwaManifest({
       'name': 'Salta Salta Freccia',
@@ -57,7 +58,7 @@ module.exports = {
       'background_color': '#01579b',
       'theme_color': '#01579b',
       'theme-color': '#01579b',
-      'start_url': '/saltasaltafreccia/',
+      'start_url': '/saltasaltafreccia//',
       'display': 'fullscreen',
       'orientation': 'landscape',
       'prefer_related_applications': false,

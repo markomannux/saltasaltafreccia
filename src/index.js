@@ -4,6 +4,12 @@ import StartScene from './es6/start-scene.js';
 import GameScene from './es6/game-scene.js';
 import './assets/css/style.css';
 
+import runtime from 'serviceworker-webpack-plugin/lib/runtime';
+
+if ('serviceWorker' in navigator) {
+  const registration = runtime.register();
+}
+
 const config = {
   type: Phaser.AUTO,
   width: 600,
