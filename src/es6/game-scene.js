@@ -3,10 +3,13 @@ import Phaser from 'phaser';
 import Player from './player.js';
 import Arrow from './arrow.js';
 
+import ScoreService from './score-service.js';
+
 export default class GameScene extends Phaser.Scene {
   constructor() {
     super({key: 'game_scene'});
     this.BASE_EMITTING_INTERVAL = 1000;
+    this.scoreService = new ScoreService();
   }
 
   init(data) {
@@ -101,7 +104,10 @@ export default class GameScene extends Phaser.Scene {
   }
 
   collideWithArrow() {
-    this.scene.start('start_scene');
+    if (this.scoreService.isHighScore(this.score)) {
+      this.scoreService.setHighScore(this.score);
+    }
+    this.scene.start('score_scene', {score: this.score});
   }
 
   onArrowOverlapsHidden(arrow, hidden) {

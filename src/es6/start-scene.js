@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import Player from './player.js';
+import ScoreService from './score-service.js';
 
 export default class StartScene extends Phaser.Scene {
   constructor() {
@@ -7,6 +8,7 @@ export default class StartScene extends Phaser.Scene {
     this.playerTypes = ['snake', 'king'];
     this.playerTypeIdx = 0;
     this.playerType = this.playerTypes[this.playerTypeIdx];
+    this.scoreService = new ScoreService();
   }
 
   preload() {
@@ -28,7 +30,7 @@ export default class StartScene extends Phaser.Scene {
     this.player.on('pointerdown', this.onPlayerTap, this);
 
     this.text = this.add
-        .text(300, 60, 'Salta Salta la Freccia', {
+        .text(300, 50, 'Salta Salta la Freccia', {
           font: '44px monospace',
           fill: '#d4963a',
         });
@@ -42,18 +44,26 @@ export default class StartScene extends Phaser.Scene {
 
       tweens: [
         {
-          y: 70,
+          y: 60,
           ease: 'Sine.easeOut',
           duration: 500,
         },
         {
-          y: 60,
+          y: 50,
           ease: 'Sine.easeOut',
           duration: 500,
         },
       ],
 
     });
+
+    const hiscoreText = `Best: ${this.scoreService.getHighScore()}`;
+    this.hiscore = this.add
+        .text(300, 100, hiscoreText, {
+          font: '30px monospace',
+          fill: '#d4963a',
+        });
+    this.hiscore.setOrigin(0.5);
 
     this.start = this.add
         .text(300, 350, 'Start', {
