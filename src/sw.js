@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ssf-cache-v9';
+const CACHE_NAME = 'ssf-cache-v11';
 
 self.addEventListener('install', function(event) {
   console.log('A *new* Service Worker installing.');

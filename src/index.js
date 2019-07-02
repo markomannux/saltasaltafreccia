@@ -26,6 +26,9 @@ const config = {
       debug: false,
     },
   },
+  audio: {
+    disableWebAudio: true,
+  },
 };
 
 new Phaser.Game(config);

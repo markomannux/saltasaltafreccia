@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import PlayerSpritesheet from '../assets/spritesheets/buch-characters-64px-extruded.png';
 import ItemsSpritesheet from '../assets/spritesheets/items.png';
 import GroundImage from '../assets/spritesheets/ground.png';
+import NoMonkeyLoop from '../assets/music/no_monkey.wav';
 
 export default class StartScene extends Phaser.Scene {
   constructor() {
@@ -32,6 +33,8 @@ export default class StartScene extends Phaser.Scene {
           spacing: 0,
         }
     );
+
+    this.load.audio('no_monkey', [NoMonkeyLoop]);
   }
 
   create() {

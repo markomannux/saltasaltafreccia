@@ -101,12 +101,17 @@ export default class GameScene extends Phaser.Scene {
         })
         .setScrollFactor(0)
         .setDepth(1000);
+
+    this.music = this.sound.add('no_monkey');
+    this.music.setLoop(true);
+    this.music.play();
   }
 
   collideWithArrow() {
     if (this.scoreService.isHighScore(this.score)) {
       this.scoreService.setHighScore(this.score);
     }
+    this.music.stop();
     this.scene.start('score_scene', {score: this.score});
   }
 
